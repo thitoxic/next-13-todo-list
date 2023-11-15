@@ -38,12 +38,12 @@ export function TodoItem({
       <button className="border border-slate-300 text-slate-300 px-2 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none" onClick={()=>{
         deleteTodo(id)
       }}>
-        {/* <Image
+        <Image
           src="./delete.svg"
           width={20}
           height={20}
           alt="delete"
-        ></Image> */}
+        ></Image>
         delete
       </button>
     </li>

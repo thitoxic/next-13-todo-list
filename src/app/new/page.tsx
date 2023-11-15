@@ -6,11 +6,14 @@ async function createTodo(data: FormData) {
   "use server"
 
   const title = data.get("title")?.valueOf()
-  if (typeof title !== "string" || title.length === 0) {
+  const description = data.get("description")?.valueOf()
+  if (typeof title !== "string" || title.length === 0 || typeof description !== "string" || description.length === 0) {
     throw new Error("Invalid Title")
   }
 
-  await prisma.todo.create({ data: { title, complete: false } })
+
+
+  await prisma.todo.create({ data: { title, description,  complete: false } })
   redirect("/")
 }
 
@@ -24,6 +27,13 @@ export default function Page() {
         <input
           type="text"
           name="title"
+          placeholder="title"
+          className="border border-slate-300 bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-100"
+        />
+        <input
+          type="text"
+          name="description"
+          placeholder="description"
           className="border border-slate-300 bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-100"
         />
         <div className="flex gap-1 justify-end">
